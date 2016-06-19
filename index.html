@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=IE8">
+    <meta name="viewport" content="width=540, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="google" content="notranslate">
+    <title>CVDUFFYTOTHEMAX.COM</title>
+    <script type="text/javascript">var version = '1.9.4';</script>
+    <script type="text/javascript" src="polyfill/polyfill.js?1.9.4"></script>
+    <script type="text/javascript" src="polyfill/Blob.js?1.9.4"></script>
+    <script type="text/javascript" src="polyfill/FileSaver.js?1.9.4"></script>
+    <!--[if gte IE 9]><!-->
+    <script type="text/javascript" src="d3.min.js?1.9.4"></script>
+    <script type="text/javascript" src="cvduffy.js?1.9.4"></script>
+    <!--<![endif]-->
+    <link rel="stylesheet" type="text/css" href="cvduffy.css?1.9.4"/>
+  </head>
+  <body>
+    <div id="center">
+      <div id="cont">
+        <noscript>
+          Your browser does not support JavaScript or it is disabled.<br>
+          JavaScript is needed to view this site.
+        </noscript>
+        <div id="dots"></div>
+        <div id="next" style="display: none">
+          <div class="msg">
+            Awesome stuff! Now make your own and share the link.<br>
+            Paste an image URL bellow and press enter.
+          </div>
+          <input placeholder="http://imgur.com/your_favourite_image.jpg"/>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      Made with <span id="love">love</span> by
+      <a href="http://web.mit.edu/mitchgu/www">Mitchell Gu</a>,
+      forked from
+      <a href="http://koalastothemax.com">koalas to the max</a>
+      /
+      Powered by
+      <a href="http://d3js.org/">D3</a>
+    </div>
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+
+    <style>
+      .chromeFrameInstallDefaultStyle {
+        width: 800px;
+        height: 600px;
+        border: 1px solid #cccccc;
+      }
+    </style>
+
+    <div id="prompt">
+    </div>
+
+    <script>
+      window.inOldIE = true;
+
+      // The conditional ensures that this code will only execute in IE,
+      // Therefore we can use the IE-specific attachEvent without worry
+      window.attachEvent("onload", function() {
+        CFInstall.check({
+          mode: "inline", // the default
+          node: "prompt",
+          oninstall: function() {
+          }
+        });
+      });
+    </script>
+    <![endif]-->
+
+    <!--[if gte IE 9]><!-->
+    <script type="text/javascript">
+      // Code left intentionally unminimized for your reading pleasure.
+
+      (function() {
+        window.shownFile = 'none';
+
+        // First, make sure we can run.
+        if (!koala.supportsCanvas()) {
+          alert("Sorry, cvduffytothemax needs HTML5 Canvas support which your browser does not have. Supported browsers include Chrome, Safari, Firefox, Opera, and Internet Explorer 9, 10");
+          return;
+        }
+
+        if (!koala.supportsSVG()) {
+          alert("Sorry, cvduffytothemax needs SVG support which your browser does not have. Supported browsers include Chrome, Safari, Firefox, Opera, and Internet Explorer 9, 10");
+          return;
+        }
+
+        // This is strange, track it if it happens.
+        if (!window.d3) {
+          alert("Some how D3 was not loaded so the site can not start. This is bad... We are investigating. Try refreshing the page and see if that helps.");
+          return;
+        }
+
+        function basicLoad(location) {
+          var possible = [
+            'cvduffy_01',
+            'cvduffy_02',
+            'cvduffy_03',
+            'cvduffy_04',
+            'cvduffy_05',
+            'cvduffy_06',
+            'cvduffy_07',
+            'cvduffy_08',
+            'cvduffy_09',
+            'cvduffy_10',
+            'cvduffy_11',
+            'cvduffy_12',
+            'cvduffy_13'
+          ];
+          var file = 'img/' + possible[Math.floor(Math.random() * possible.length)] + '.jpg'
+          return {
+            file: file,
+            shownFile: location.protocol + '//' + location.host + location.pathname + file
+          };
+        };
+
+        var parse = basicLoad(location);
+        var file = parse.file;
+        window.shownFile = parse.shownFile;
+
+        var img = new Image();
+        img.onload = function() {
+          var colorData;
+            colorData = koala.loadImage(this);
+          try {
+          } catch (e) {
+            colorData = null;
+            alert("Sorry, cvduffytothemax could not load the image '" + file + "'");
+            setTimeout(function() {
+              window.location.href = domain;
+            }, 750);
+          }
+          if (colorData) {
+            koala.makeCircles("#dots", colorData);
+          }
+        };
+        img.src = file;
+      })();
+    </script>
+    <!--<![endif]-->
+  </body>
+</html>
